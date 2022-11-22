@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>Minhas tarefas</title>
+            <style>
+                *{
+                    box-sizing: border-box;
+                    margin: 0;
+                }
+
+                body {
+                    min-height: 100vh;
+                    font-family: flexo, sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    background: blue;
+                    border: 10px solid blue;
+                }
+
+                header {
+                    display: flex;
+                    color: white;
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 10px 0;
+                }
+
+                main {
+                    flex: auto;
+                    background: lightblue;
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+
+                main ul {
+                    padding: 0;
+                    list-style: outside;
+                }
+
+                main li {
+                    padding: 5px 0;
+                }
+
+                footer {
+                    display: flex;
+                    padding-top: 5px;
+                }
+
+                footer input {
+                    flex: auto;
+                    padding: 4px;
+                    border-radius: 5px;
+                }
+
+                footer button {
+                    border-radius: 5px;
+                }
+            </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Tarefas</h1>
+        </header>
+
+        <main>
+            <ul>
+            </ul>
+        </main>
+
+        <footer>
+            <input>
+            <button onclick="add()">Adicionar</button>
+        </footer>
+        
+        <script>
+
+            // estado da aplicação
+            const tarefas = ["Estudar JS", "Estudar LMS"];
+
+            function add() {
+                const input = document.querySelector("input");
+                input.value = input.value.trim();
+                if (input.value != "") {
+                    const tarefa = input.value;
+                    tarefas.push(tarefa);
+                    input.value = "";
+                    render();
+                }
+            }
+
+            function render() {
+                const ul = document.querySelector("ul");
+                ul.innerHTML = null;
+                tarefas.forEach(function(tarefa){
+                    const li = document.createElement("li");
+                    li.innerText = tarefa;
+                    ul.appendChild(li);
+                })
+            }
+
+            render();
+        </script>
+    </body>
+
+</html>
